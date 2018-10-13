@@ -13,16 +13,16 @@ const ButtonDefault = styled.button`
 
 
 class Button extends Component {
-	onClickHandler = () => {
+	onClickHandler = (event) => {
 		const { onClick } = this.props;
-		onClick();
+		onClick(event);
 	}
 
 	render() {
-		const { children, primary } = this.props;
+		const { children, primary, type } = this.props;
 
 		return (
-			<ButtonDefault onClick={this.onClickHandler} primary={primary}>
+			<ButtonDefault type={type} onClick={this.onClickHandler} primary={primary}>
 				{ children }
 			</ButtonDefault>
 		);
@@ -33,10 +33,12 @@ Button.propTypes = {
 	onClick: propTypes.func.isRequired,
 	children: propTypes.string.isRequired,
 	primary: propTypes.bool,
+	type: propTypes.string,
 };
 
 Button.defaultProps = {
 	primary: true,
+	type: 'button',
 };
 
 export default Button;

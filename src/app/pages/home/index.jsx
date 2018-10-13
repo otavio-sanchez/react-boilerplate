@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Search from '../../containers/Search';
 
 class Home extends Component {
 	state = {
@@ -16,6 +17,7 @@ class Home extends Component {
 
 		return (
 			<div>
+				<Search onSearch={(value) => { console.log(value); }} />
 				{
 					loading ? <div> Home </div> : <div>Carregando</div>
 				}
