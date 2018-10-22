@@ -1,24 +1,46 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+import promise from 'redux-promise';
+import multi from 'redux-multi';
+import reduxLogger from 'redux-logger';
+import createHistory from 'history/createBrowserHistory';
+
 import reducers from '../reducers';
 
-const middleWare = [];
+export const history = createHistory();
 
-middleWare.push(thunk);
+const initialState = {};
+const enhancers = [];
+const middleware = [
+	multi,
+	thunk,
+	promise,
+	reduxLogger,
+	routerMiddleware(history),
+];
 
-const loggerMiddleware = createLogger({
-	predicate: () => process.env.NODE_ENV === 'development',
-});
+if (process.env.NODE_ENV === 'development') {
+	const { devToolsExtension } = window;
 
-middleWare.push(loggerMiddleware);
+	const devToolsExtensionWindow = devToolsExtension;
+
+	if (typeof devToolsExtensionWindow === 'function') {
+		enhancers.push(devToolsExtensionWindow());
+	}
+}
+
+const rootReducer = (state, action) => reducers(state, action);
+
+const composedEnhancers = compose(
+	applyMiddleware(...middleware),
+	...enhancers,
+);
 
 const store = createStore(
-	reducers,
-	{},
-	compose(
-		applyMiddleware(...middleWare),
-	),
+	rootReducer,
+	initialState,
+	composedEnhancers,
 );
 
 export default store;

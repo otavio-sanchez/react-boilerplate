@@ -1,29 +1,10 @@
-import React, { Component } from 'react';
-import Search from '../../containers/Search';
+import React from 'react';
+import Articles from '../../modules/Articles';
 
-class Home extends Component {
-	state = {
-		loading: false,
-	}
+const Home = () => (
 
-	componentWillMount() {
-		this.setState({
-			loading: true,
-		});
-	}
+	<Articles />
 
-	render() {
-		const { loading } = this.state;
-
-		return (
-			<div>
-				<Search onSearch={(value) => { console.log(value); }} />
-				{
-					loading ? <div> Home </div> : <div>Carregando</div>
-				}
-			</div>
-		);
-	}
-}
+);
 
 export default Home;
