@@ -6,7 +6,6 @@ import actions from './store/actions';
 
 class Articles extends Component {
 	state = {
-		listArticles: null,
 		error: false,
 	}
 
@@ -23,7 +22,8 @@ class Articles extends Component {
 
 
 	render() {
-		const { listArticles, error } = this.state;
+		const { error } = this.state;
+		const { articles } = this.props;
 
 		if (error) {
 			return (<div> error </div>);
@@ -40,7 +40,10 @@ class Articles extends Component {
 					textPlaceholder="Buscar por..."
 				/>
 
-				{console.log(listArticles)}
+				{ articles.loading && <div>Carregando</div> }
+
+
+				{console.log(articles)}
 
 			</div>
 

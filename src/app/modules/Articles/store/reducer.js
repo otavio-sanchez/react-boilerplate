@@ -1,7 +1,7 @@
 import type from './action-type';
 
 const initialState = {
-	articles: [],
+	list: [],
 	loading: false,
 	error: null,
 };
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
 		case type.SEARCH_ARTICLE:
 			return {
 				...state,
-				articles: action.articles,
+				list: action.articles,
 				error: action.error,
 				loading: action.loading,
 			};

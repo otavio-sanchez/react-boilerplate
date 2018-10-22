@@ -6,6 +6,7 @@ const searchArticles = search => async (dispatch) => {
 		type: type.SEARCH_ARTICLE,
 		loading: true,
 		articles: [],
+		error: null,
 	});
 
 	search.then((response) => {
@@ -13,6 +14,7 @@ const searchArticles = search => async (dispatch) => {
 			type: type.SEARCH_ARTICLE,
 			loading: false,
 			articles: response,
+			error: null,
 		});
 	})
 		.catch((error) => {
