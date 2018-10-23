@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Search from '../../containers/Search';
+import List from '../../components/List';
+import Loading from '../../components/Loading';
 import actions from './store/actions';
+
 
 class Articles extends Component {
 	state = {
@@ -40,10 +43,14 @@ class Articles extends Component {
 					textPlaceholder="Buscar por..."
 				/>
 
-				{ articles.loading && <div>Carregando</div> }
-
-
-				{console.log(articles)}
+				<Loading on={articles.loading}>
+					<List
+						body="body"
+						data={articles.list}
+						header="title"
+						id="id"
+					/>
+				</Loading>
 
 			</div>
 
