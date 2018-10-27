@@ -6,14 +6,13 @@ const List = ({
 }) => (
 	<ul>
 		{
-			data && data.lenght !== 0
-				? <li>Nenhum item encontrado.</li>
-				: data.map(item => (
+			data && data.length !== 0
+				? data.map(item => (
 					<li key={item[id]}>
 						<div>{item[header]}</div>
 						<div>{item[body]}</div>
-					</li>
-				))
+					</li>))
+				: <li>Nenhum item encontrado.</li>
 		}
 	</ul>
 );
