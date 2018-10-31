@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const HeaderMenu = styled.div`
 
@@ -18,10 +21,31 @@ const Both = styled(HeaderMenu)`
 	z-index: -1;
 `;
 
+const Menu = styled.nav`
+	display: block;
+`;
+
 
 class Header extends Component {
 	state = {
 		open: false,
+	}
+
+
+	componentWillReceiveProps() {
+		const { pages, title } = this.props;
+
+		const currentPage = pages.filter(page => this.getLocationPage(page));
+
+		document.title = `${title} - ${currentPage.length !== 0 ? currentPage[0].title : ''}`;
+	}
+
+	getLocationPage = (page) => {
+		const { history } = this.props;
+
+		const { location } = history;
+
+		return page.path === location.pathname && page.title;
 	}
 
 	onClickHandler = () => {
@@ -37,25 +61,47 @@ class Header extends Component {
 		return (
 			<header>
 				<HeaderMenu onClick={this.onClickHandler}>
-					{console.log(pages)}
-					<div>
-						<div>Logo</div>
-						{' '}
-						<div>
-							{' '}
-							{open}
-							{' '}
-						</div>
-					</div>
+					<Grid fluid>
+						<Row>
+							<Col xs={12}>
+
+								<div>
+									<div>Logo</div>
+									{' '}
+									<div>
+										{' '}
+										{open}
+										{' '}
+									</div>
+								</div>
+							</Col>
+						</Row>
+					</Grid>
 				</HeaderMenu>
 				<Both />
+				<Menu>
+					<ul>
+						{
+							pages.map(page => (
+								<li key={page.path}>
+									<Link to={page.path}>{page.title}</Link>
+								</li>
+							))
+						}
+					</ul>
+				</Menu>
 			</header>
 		);
 	}
 }
 
 Header.propTypes = {
+	title: propTypes.string,
 	pages: propTypes.instanceOf(Array).isRequired,
 };
 
-export default Header;
+Header.defaultProps = {
+	title: 'Boilerplate',
+};
+
+export default withRouter(Header);
