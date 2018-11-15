@@ -1,22 +1,23 @@
 import 'normalize.css';
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+
+import StyleComponent from './components/StyleComponent';
 import Main from './main';
 import routes from '../routes';
 import Header from './components/Header';
-import theme from './theme';
+import Footer from './components/Footer';
 
-const nameProject = 'Boilerplate React';
 
-const App = () => (
+const App = () => {
+	const nameProject = 'Boilerplate React';
 
-	<ThemeProvider theme={theme}>
-		<React.Fragment>
+	return (
+		<StyleComponent>
 			<Header pages={routes} title={nameProject} />
 			<Main routes={routes} />
-		</React.Fragment>
-	</ThemeProvider>
-
-);
+			<Footer title={nameProject} />
+		</StyleComponent>
+	);
+};
 
 export default App;

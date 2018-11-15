@@ -7,6 +7,7 @@ const colors = {
 	header: '#FFF4E0',
 };
 
+
 const header = {
 	font: {
 		size: '22px',
@@ -33,11 +34,20 @@ const menu = {
 
 const body = {
 	font: {
-		fontSize: '16px',
+		size: '16px',
 		color: colors.text,
+		family: 'Arial',
+	},
+};
+
+const footer = {
+	font: {
+		size: '12px',
+		color: colors.text,
+		family: 'Arial',
 	},
 };
 
 export default {
-	header, colors, body, menu,
+	header, colors, body, menu, footer,
 };

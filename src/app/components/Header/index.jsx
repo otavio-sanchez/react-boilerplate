@@ -5,14 +5,11 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
-const HeaderMenu = styled.div`
+const HeaderMenu = styled.header`
   -moz-transition: all .6s ease-in-out;
   -webkit-transition: all .6s ease-in-out;
   background-color: ${props => props.style.background.color};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-  color: ${props => props.style.font.color};
-  font-family: ${props => props.style.font.family};
-  font-size: ${props => props.style.font.size};
   height: ${props => props.style.background.height};
   left: 0;
   position: fixed;
@@ -21,6 +18,14 @@ const HeaderMenu = styled.div`
   transition: all .6s ease-in-out;
   width: initial;
   z-index: 10;
+
+  .logo{
+	color: ${props => props.style.font.color};
+	font-family: ${props => props.style.font.family};
+	font-size: ${props => props.style.font.size};
+	font-weight: 500;
+	margin: 0px;
+  }
 
   > div{
 	  height: 100%;
@@ -88,7 +93,7 @@ class Header extends Component {
 
 	render() {
 		const { open } = this.state;
-		const { pages, theme } = this.props;
+		const { pages, theme, title } = this.props;
 
 
 		return (
@@ -97,7 +102,7 @@ class Header extends Component {
 					<Grid fluid>
 						<Row middle="xs">
 							<Col xs={6}>
-								<div>Logo</div>
+								<h1 className="logo">{ title }</h1>
 							</Col>
 							<Col xs={6}>
 								<div>
