@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 const TextFieldDefault = styled.input`
-    border: 1px solid blue;
+    border: 1px solid #fff;
     width: 100%;
 `;
 

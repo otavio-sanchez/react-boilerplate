@@ -4,7 +4,7 @@ const colors = {
 	main: '#00ADB5',
 	alternative: '#FC3C3C',
 	text: '#393E46',
-	header: '#FFF4E0',
+	header: '#FFF',
 };
 
 
@@ -25,6 +25,7 @@ const menu = {
 	font: {
 		size: '16px',
 		color: colors.alternative,
+		colorHover: colors.main,
 		family: 'Arial',
 	},
 	background: {

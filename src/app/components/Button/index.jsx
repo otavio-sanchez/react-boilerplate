@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import propTypes from 'prop-types';
 
 const ButtonDefault = styled.button`
-    background-color:  ${props => (props.primary ? 'blue' : 'white')};
-    color: ${props => (props.primary ? 'white' : 'blue')};
+    background-color:  ${props => (props.primary ? props.theme.main : props.theme.alternative)};
+    color: #fff;
     font-size: 1em;
     padding: 0.25em 1em;
-    border: 1px solid blue;
-    border-radius: 5px;
+    border: 1px solid  ${props => (props.primary ? props.theme.main : props.theme.alternative)};
+	border-radius: 10px;
+	width: 100%
 `;
 
 
@@ -19,10 +20,17 @@ class Button extends Component {
 	}
 
 	render() {
-		const { children, primary, type } = this.props;
+		const {
+			children, primary, type, theme,
+		} = this.props;
 
 		return (
-			<ButtonDefault type={type} onClick={this.onClickHandler} primary={primary}>
+			<ButtonDefault
+				type={type}
+				onClick={this.onClickHandler}
+				primary={primary}
+				theme={theme.colors}
+			>
 				{ children }
 			</ButtonDefault>
 		);
@@ -41,4 +49,4 @@ Button.defaultProps = {
 	type: 'button',
 };
 
-export default Button;
+export default withTheme(Button);

@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import Button from '../../components/Button';
 import TextField from '../../components/TextField';
 import api from '../../../helpers/api';
+
+const SearchForm = styled.form`
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 2px;
+  border-radius: 10px;
+`;
 
 class Search extends Component {
 	state = {
@@ -36,12 +45,23 @@ class Search extends Component {
 		const { searchValid } = this.state;
 
 		return (
-			<form>
-				<TextField placeholder={textPlaceholder} onChange={this.onChangeText} />
-				<Button type="submit" disabled={searchValid} onClick={this.onSearch}>
-					{textButton}
-				</Button>
-			</form>
+			<SearchForm>
+
+				<Grid fluid>
+					<Row middle="xs">
+						<Col xs={10}>
+							<TextField placeholder={textPlaceholder} onChange={this.onChangeText} />
+						</Col>
+						<Col xs={2}>
+							<Button type="submit" disabled={searchValid} onClick={this.onSearch}>
+								{textButton}
+							</Button>
+						</Col>
+					</Row>
+				</Grid>
+
+
+			</SearchForm>
 		);
 	}
 }
