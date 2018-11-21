@@ -1,5 +1,3 @@
-
-
 const colors = {
 	main: '#00ADB5',
 	alternative: '#FC3C3C',
@@ -50,5 +48,9 @@ const footer = {
 };
 
 export default {
-	header, colors, body, menu, footer,
+	header,
+	colors,
+	body,
+	menu,
+	footer,
 };
