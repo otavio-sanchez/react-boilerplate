@@ -1,19 +1,28 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import styled from 'styled-components';
 
-
-const Loading = ({ children, on }) => {
-	if (on) {
-		return (
-			<div>Carregando</div>
-		);
+const LoadingComponent = styled.div`
+	.loading{
+		text-align: center;
+		padding: 10px 0;
 	}
-	return (
-		<div>
-			{ children }
-		</div>
-	);
-};
+`;
+
+const Loading = ({ children, on }) => (
+	<LoadingComponent>
+		{
+			on ? <div className="loading">Carregando</div>
+				: (
+
+					<React.Fragment>{ children }</React.Fragment>
+
+				)
+		}
+
+
+	</LoadingComponent>
+);
 
 Loading.propTypes = {
 	on: propTypes.bool.isRequired,

@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import styled from 'styled-components';
 
-class About extends Component {
-	state = {
-		loading: false,
-	}
+const AboutPage = styled.div`
+	  min-height: 100vh;
+	  padding-top: 20px;
+	  padding-bottom: 20px;
+`;
 
-	componentWillMount() {
-		this.setState({
-			loading: true,
-		});
-	}
 
-	render() {
-		const { loading } = this.state;
-
-		return (
-			<div>
-				{
-					loading ? <div> About </div> : <div>Carregando</div>
-				}
-			</div>
-		);
-	}
-}
+const About = () => (
+	<AboutPage>
+		<Grid fluid>
+			<Row>
+				<Col xs={12}>
+					<div>About</div>
+				</Col>
+			</Row>
+		</Grid>
+	</AboutPage>
+);
 
 export default About;

@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import styled from 'styled-components';
 import Search from '../../containers/Search';
 import List from '../../components/List';
 import Loading from '../../components/Loading';
 import actions from './store/actions';
 
+
+const ArticlesModule = styled.section`
+
+`;
 
 class Articles extends Component {
 	state = {
@@ -33,27 +39,33 @@ class Articles extends Component {
 		}
 
 		return (
-			<div>
-
-				<Search
-					onSearch={this.onSearch}
-					parameter="userId"
-					route="posts"
-					textButton="Buscar"
-					textPlaceholder="Buscar por..."
-				/>
-
-				<Loading on={articles.loading}>
-					<List
-						body="body"
-						data={articles.list}
-						header="title"
-						id="id"
-					/>
-				</Loading>
-
-			</div>
-
+			<ArticlesModule>
+				<Grid fluid>
+					<Row middle="xs">
+						<Col xs={12}>
+							<Search
+								onSearch={this.onSearch}
+								parameter="userId"
+								route="posts"
+								textButton="Buscar"
+								textPlaceholder="Buscar por..."
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={12}>
+							<Loading on={articles.loading}>
+								<List
+									body="body"
+									data={articles.list}
+									header="title"
+									id="id"
+								/>
+							</Loading>
+						</Col>
+					</Row>
+				</Grid>
+			</ArticlesModule>
 		);
 	}
 }

@@ -64,7 +64,7 @@ const Menu = styled.nav`
 	right:  ${props => (props.open ? '0px' : '-100%')};
 	min-width: 320px;
 	z-index: 1000;
-	transition: all  0.5s ease-out;
+	transition: all  0.5s ease-in-out;
   
   @media (max-width: 620px){
 	&{

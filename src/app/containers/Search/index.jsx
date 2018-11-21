@@ -11,6 +11,10 @@ const SearchForm = styled.form`
   width: 100%;
   padding: 2px;
   border-radius: 10px;
+
+  div {
+	  padding: 1px 3.5px;
+  }
 `;
 
 class Search extends Component {

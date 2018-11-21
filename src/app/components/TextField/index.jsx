@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import propTypes from 'prop-types';
 
 const TextFieldDefault = styled.input`
     border: 1px solid #fff;
-    width: 100%;
+	width: 100%;
+	outline: none;
+	transition: color 0.3s ease-in-out;
+	
+	&[type=text]:focus {
+		transition: color 0.3s ease-in-out;
+		color: ${props => props.style.alternative}
+	}
 `;
 
 
@@ -24,10 +31,10 @@ class TextField extends Component {
 
 	render() {
 		const { value } = this.state;
-		const { placeholder } = this.props;
+		const { placeholder, theme } = this.props;
 
 		return (
-			<TextFieldDefault type="text" placeholder={placeholder} onChange={this.handleChange} value={value} />
+			<TextFieldDefault type="text" style={theme.colors} placeholder={placeholder} onChange={this.handleChange} value={value} />
 		);
 	}
 }
@@ -41,4 +48,4 @@ TextField.defaultProps = {
 	placeholder: 'input',
 };
 
-export default TextField;
+export default withTheme(TextField);

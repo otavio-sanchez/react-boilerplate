@@ -6,10 +6,19 @@ const ButtonDefault = styled.button`
     background-color:  ${props => (props.primary ? props.theme.main : props.theme.alternative)};
     color: #fff;
     font-size: 1em;
-    padding: 0.25em 1em;
+    padding: 0.5em 1em;
     border: 1px solid  ${props => (props.primary ? props.theme.main : props.theme.alternative)};
 	border-radius: 10px;
-	width: 100%
+	width: 100%;
+	transition: all  0.2s ease-in-out;
+	outline: none;
+	cursor: pointer;
+	
+	&:hover{
+		transition: all  0.2s ease-in-out;
+		background-color:  ${props => (props.primary ? props.theme.alternative : props.theme.main)};
+		border: 1px solid  ${props => (props.primary ? props.theme.alternative : props.theme.main)};
+	}
 `;
 
 
